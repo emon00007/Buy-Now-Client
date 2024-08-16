@@ -1,7 +1,9 @@
+import ProdactPage from "../ProdactPages/ProdactPage";
+
 const Home = () => {
     return (
-        <div className="text-8xl font-extrabold">
-            Hiiiiii
+        <div >
+            <ProdactPage></ProdactPage>
         </div>
     );
 };
