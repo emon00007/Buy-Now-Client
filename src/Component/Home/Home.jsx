@@ -5,7 +5,7 @@ import ProdactPage from "../ProdactPages/ProdactPage";
 
 const Home = () => {
     return (
-        <div >
+        <div className="mx-4">
 
             <Banner></Banner>
             <ProdactPage></ProdactPage>

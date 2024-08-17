@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
       const link=  <>
       <li><Link to={'/'} >Home </Link> </li>
-    <li><a href="#Featured">Products</a></li>
+    <li><a href="#Products">Products</a></li>
     <li><a href="#aboutUs">About</a></li>
     <li><a href="#ContactUs">Contact Us </a></li>
       </>
@@ -51,7 +51,6 @@ const Navbar = () => {
   </div>
   <div className="navbar-end gap-5">
     <img src={user?.photoURL} className="w-14 rounded-full" alt="" />
-    {console.log(user)} 
     {
         user?<>
         <button onClick={handelLogOut} className="btn">Log Out</button>

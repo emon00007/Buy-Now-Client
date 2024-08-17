@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import { FaStar } from "react-icons/fa";
 const ProdactPage = () => {
     const [products, setProducts] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
@@ -17,7 +17,7 @@ const ProdactPage = () => {
     const fetchProducts = async () => {
         setLoading(true);
         try {
-            const response = await axios.get('http://localhost:5000/product', {
+            const response = await axios.get('https://buy-now-server.vercel.app/product', {
                 params: {
                     page: currentPage,
                     brand,
@@ -51,7 +51,7 @@ const ProdactPage = () => {
     };
 
     return (
-        <div>
+        <div id='Products'>
             <div className="flex justify-between items-center my-10">
                 <div>
                     <details className="dropdown mr-5">
@@ -109,9 +109,9 @@ const ProdactPage = () => {
                         <option value="1-10">1 - 10</option>
                         <option value="11-20">10 - 20</option>
                         <option value="21-30">21 - 30</option>
-                        <option value="31-40">31 - 40</option>
-                        <option value="41-50">41 - 50</option>
+                        <option value="31-50">31 - 50</option>
                         <option value="51-100">51 - 100</option>
+                        <option value="101-200">101 - 200</option>
                     </select>
                 </div>
             </div>
@@ -149,7 +149,11 @@ const ProdactPage = () => {
                                                 <p>Price: {product.price_range}</p>
                                                 <p>Date: {product.listing_date}</p>
                                             </div>
-                                            <p>Brand: {product.brand_name}</p>
+                                            <div className='flex justify-between'> 
+                                                <p>Brand: {product.brand_name}</p>
+                                                <p className='flex items-center text-yellow-600'><span>{product.rating}</span> <FaStar ></FaStar></p>
+                                            </div>
+
                                             <p>Category: {product.category}</p>
                                         </div>
                                     </div>
