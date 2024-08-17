@@ -7,11 +7,12 @@ const ProdactPage = () => {
     const [totalPages, setTotalPages] = useState(0);
     const [loading, setLoading] = useState(true);
 
-    // Filter and sort states
+    // Filter, sort, and search states
     const [brand, setBrand] = useState('');
     const [category, setCategory] = useState('');
     const [priceRange, setPriceRange] = useState('');
     const [sort, setSort] = useState('Newest first');
+    const [search, setSearch] = useState(''); // New search state
 
     const fetchProducts = async () => {
         setLoading(true);
@@ -24,8 +25,8 @@ const ProdactPage = () => {
                     minimum: priceRange ? priceRange.split('-')[0] : '',
                     maximum: priceRange ? priceRange.split('-')[1] : '',
                     sort,
+                    search // Include search query in request
                 }
-
             });
 
             const { data } = response;
@@ -38,13 +39,11 @@ const ProdactPage = () => {
             setLoading(false);
         }
     };
-    console.log(priceRange ? priceRange.split('-')[0] : '',);
-    console.log(priceRange ? priceRange.split('-')[1] : '',)
 
     useEffect(() => {
         fetchProducts();
-    }, [currentPage, brand, category, priceRange, sort]);
-    console.log(currentPage);
+    }, [currentPage, brand, category, priceRange, sort, search]); // Include search in dependencies
+
     const handlePageChange = (newPage) => {
         if (newPage > 0 && newPage <= totalPages) {
             setCurrentPage(newPage);
@@ -117,25 +116,41 @@ const ProdactPage = () => {
                 </div>
             </div>
 
+            {/* Search input */}
+            <div className="my-5 ">
+                <p>Search products...</p>
+                <input
+                    type="text"
+                    placeholder="Search products..."
+                    className="input border-[#142e35]   border "
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                />
+                
+            </div>
+
             {loading ? (
                 <p>Loading...</p>
             ) : (
                 <>
                     {products.length > 0 ? (
                         <>
-                            <div className=' grid lg:grid-cols-3 gap-5  md:grid-cols-2'>
+                            <div className='grid lg:grid-cols-3 gap-5 md:grid-cols-2'>
                                 {products.map(product => (
-
                                     <div key={product._id} className="card mx-auto bg-base-100 w-96 shadow-xl">
                                         <figure>
                                             <img
-                                                src={product.image_url} />
+                                                src={product.image_url}
+                                                alt={product.product_name} />
                                         </figure>
                                         <div className="card-body">
                                             <h2 className="card-title">{product.product_name}</h2>
-                                            <div className='flex'><p>Price:{product.price_range}</p> date:{product.listing_date} </div>
-                                            <p>Brand:{product.brand_name}</p>
-                                            <p>category:{product.category}</p>
+                                            <div className='flex'>
+                                                <p>Price: {product.price_range}</p>
+                                                <p>Date: {product.listing_date}</p>
+                                            </div>
+                                            <p>Brand: {product.brand_name}</p>
+                                            <p>Category: {product.category}</p>
                                         </div>
                                     </div>
                                 ))}

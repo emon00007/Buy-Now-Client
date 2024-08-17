@@ -50,6 +50,8 @@ const Navbar = () => {
 
   </div>
   <div className="navbar-end gap-5">
+    <p></p>
+    {console.log(user)}
     {
         user?<>
         <button onClick={handelLogOut} className="btn">Log Out</button>
