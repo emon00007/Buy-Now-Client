@@ -9,7 +9,7 @@ const SignUp = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [registerError, setRegisterError] = useState("");
     const { createUser, updateUser, setUser } = useContext(AuthContext);
-    const navigate = useNavigate(); // Initialize useNavigate hook
+    const navigate = useNavigate(); 
 
     const handleCreateUser = (e) => {
         e.preventDefault();
