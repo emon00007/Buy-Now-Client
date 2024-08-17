@@ -123,21 +123,19 @@ const ProdactPage = () => {
                 <>
                     {products.length > 0 ? (
                         <>
-                            <div>
+                            <div className=' grid lg:grid-cols-3 gap-5  md:grid-cols-2'>
                                 {products.map(product => (
 
-                                    <div key={product._id} className="card bg-base-100 w-96 shadow-xl">
+                                    <div key={product._id} className="card mx-auto bg-base-100 w-96 shadow-xl">
                                         <figure>
                                             <img
-                                                src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                                                alt="Shoes" />
+                                                src={product.image_url} />
                                         </figure>
                                         <div className="card-body">
                                             <h2 className="card-title">{product.product_name}</h2>
-                                            <p>Price:{product.price_range}</p>
-                                            <div className="card-actions justify-end">
-                                                <button className="btn btn-primary">Buy Now</button>
-                                            </div>
+                                            <div className='flex'><p>Price:{product.price_range}</p> date:{product.listing_date} </div>
+                                            <p>Brand:{product.brand_name}</p>
+                                            <p>category:{product.category}</p>
                                         </div>
                                     </div>
                                 ))}
