@@ -50,8 +50,8 @@ const Navbar = () => {
 
   </div>
   <div className="navbar-end gap-5">
-    <p></p>
-    {console.log(user)}
+    <img src={user?.photoURL} className="w-14 rounded-full" alt="" />
+    {console.log(user)} 
     {
         user?<>
         <button onClick={handelLogOut} className="btn">Log Out</button>
